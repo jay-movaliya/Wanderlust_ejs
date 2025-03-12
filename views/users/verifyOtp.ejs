@@ -1,0 +1,32 @@
+<% layout('/layouts/boilerplate.ejs') %>
+<body class="u-v-body">
+    <div class="form-container verify-otp-container">
+        <h1 class="text-center mb-4">Verify OTP</h1>
+        <form action="/user/verify-otp" method="POST">
+            <input type="hidden" name="email" value="<%= email %>" />
+
+            <div class="mb-3">
+                <label for="otp" class="form-label">Enter OTP:</label>
+                <input type="number" id="otp" name="otp" class="form-control" placeholder="Enter your OTP" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Verify</button>
+        </form>
+
+        <% if (messages && messages.length > 0) { %>
+            <div class="message-container">
+                <% messages.forEach(message => { %>
+                    <p class="<%= message.type === 'success' ? 'message-success' : 'message-error' %>">
+                        <%= message.text %>
+                    </p>
+                <% }); %>
+            </div>
+        <% } %>
+
+        <!-- Resend OTP Button -->
+        <form action="/user/resend-otp" method="POST">
+            <input type="hidden" name="email" value="<%= email %>" />
+            <button type="submit" class="btn btn-secondary mt-3">Resend OTP</button>
+        </form>
+    </div>
+</body>
