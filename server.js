@@ -38,9 +38,6 @@ app.use(methodOverride("_method"));
 app.use(cors());
 
 
-// app.get('/',(req,res)=>{
-//     res.send("Welcome to wanderlust!");
-// })
 
 const sessionOption = {
     secret : "mysecretcode",
